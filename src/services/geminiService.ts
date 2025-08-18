@@ -125,7 +125,7 @@ const getChefPersonalityPrompt = (personality: ChefPersonality): string => {
     
     default:
       return `
-        CHEF PERSONALITY: You are Chef Emma, a friendly 29-year-old culinary instructor with a warm, approachable voice and genuine love for teaching home cooking.
+        CHEF PERSONALITY: You are Chef Priya, a friendly 29-year-old culinary instructor with a warm, approachable voice and genuine love for teaching home cooking.
         - You speak with gentle confidence and encouraging warmth, like a favorite cooking teacher
         - Your voice is clear and reassuring, making cooking feel accessible and enjoyable for everyone
         - You're patient and thorough in explanations, with a natural teaching ability that builds confidence
@@ -133,7 +133,7 @@ const getChefPersonalityPrompt = (personality: ChefPersonality): string => {
         - You encourage creativity while providing solid foundations, making cooking feel both safe and adventurous
         - Your tone is supportive and friendly, with the warmth of someone who truly wants to help others succeed
         
-        For personalityTips, include 2-3 helpful cooking insights shared with Chef Emma's supportive, teaching-focused warmth and encouragement.
+        For personalityTips, include 2-3 helpful cooking insights shared with Chef Priya's supportive, teaching-focused warmth and encouragement.
       `;
   }
 };
@@ -299,7 +299,7 @@ export const generateRecipeImage = async (recipe: { recipeName: string; ingredie
 // Fallback function using a different free API
 const generateRecipeImageFallback = async (recipe: { recipeName: string; ingredients: string[]; instructions: string[] }): Promise<string> => {
     try {
-        // Using Pollinations.ai - a completely free image generation service
+        // Using Pollinations.ai
         const mainIngredients = recipe.ingredients.slice(0, 3).join(' ');
         const prompt = encodeURIComponent(`professional food photography ${recipe.recipeName} with ${mainIngredients} beautifully plated restaurant quality`);
         const imageUrl = `https://image.pollinations.ai/prompt/${prompt}?width=512&height=512&seed=${Math.floor(Math.random() * 1000000)}`;

@@ -19,7 +19,7 @@ const CHEF_VOICE_CONFIGS: Record<ChefPersonality, VoiceConfig> = {
   },
   [ChefPersonality.QUICK_CHEF]: {
     pitch: 1.1,
-    rate: 1.3,
+    rate: 1.05,
     voiceName: 'female'
   },
   [ChefPersonality.NORMAL]: {
@@ -32,7 +32,7 @@ const CHEF_DESCRIPTIONS: Record<ChefPersonality, string> = {
   [ChefPersonality.MICHELIN]: "Hi there! I am Chef Aria, your Michelin-style culinary expert. I love creating restaurant-quality dishes with advanced techniques and elegant plating. Let's cook something extraordinary together!",
   [ChefPersonality.BUDGET_MOM]: "Hello! I'm Chef Rosa, your friendly budget mom. I specialize in practical, affordable meals for families using simple ingredients. Let's make delicious food without breaking the bank!",
   [ChefPersonality.QUICK_CHEF]: "Hey! I'm Chef Luna, your quick and efficient kitchen companion. I focus on fast recipes and time-saving tricks for busy cooks like you. Ready to whip up something tasty in no time?",
-  [ChefPersonality.NORMAL]: "Naamaastei! I'm Chef Priya, here to guide you with clear, step-by-step instructions for everyday home cooking. Let's enjoy making great food together!"
+  [ChefPersonality.NORMAL]: "Namaste! I'm Chef Priya, here to guide you with clear, step-by-step instructions for everyday home cooking. Let's enjoy making great food together!"
 };
 
 class VoiceService {
@@ -60,7 +60,7 @@ class VoiceService {
     
     this.currentUtterance = new SpeechSynthesisUtterance(description);
     
-    const voice = this.getFemaleVoice();
+    const voice = this.getFemaleVoice(chefPersonality);
     if (voice) {
       this.currentUtterance.voice = voice;
     }
@@ -97,7 +97,7 @@ class VoiceService {
       .replace(/\b(\d+)\s*ml\b/gi, '$1 milliliters')
       .replace(/\b(\d+)\s*l\b/gi, '$1 liters')
       
-      // Convert foreign measurements to Indian
+      // Convert foreign measurements to Indian (direct 1:1 conversions for simplicity)
       .replace(/\b(\d+)\s*lbs?\b/gi, '$1 kilograms')
       .replace(/\b(\d+)\s*pounds?\b/gi, '$1 kilograms')
       .replace(/\b(\d+)\s*oz\b/gi, '$1 grams')
@@ -115,17 +115,32 @@ class VoiceService {
       .replace(/(\d+)°F/gi, '$1 degrees Fahrenheit');
   }
 
-  private getFemaleVoice(): SpeechSynthesisVoice | null {
+  private getFemaleVoice(chefPersonality: ChefPersonality): SpeechSynthesisVoice | null {
     const voices = this.synth.getVoices();
+    
+    // Voice names distributed among 4 chef personalities
+    const chefVoiceNames: Record<ChefPersonality, string[]> = {
+      [ChefPersonality.MICHELIN]: [
+        'zira', 'hazel', 'samantha', 'karen', 'victoria', 'moira', 'susan', 'allison', 'ava'
+      ],
+      [ChefPersonality.BUDGET_MOM]: [
+        'lucy', 'emma', 'olivia', 'julie', 'mary', 'jane', 'tessa', 'zira'
+      ],
+      [ChefPersonality.QUICK_CHEF]: [
+        'sharon', 'heather', 'tracy', 'ashley', 'michelle', 'laura', 'anna', 'amy', 'joanna', 'zira'
+      ],
+      [ChefPersonality.NORMAL]: [
+        'jenny', 'catherine', 'angel', 'angela', 'female', 'zira'
+      ]
+    };
+
     // 1. Try to find a voice with gender property 'female'
     const femaleByGender = voices.find(v => (v as any).gender === 'female');
     if (femaleByGender) return femaleByGender;
 
-    // 2. Try to find a voice with a clearly female name
-    const femaleNames = [
-      'zira', 'hazel', 'samantha', 'karen', 'victoria', 'moira', 'susan', 'allison', 'ava', 'elena', 'female', 'linda', 'lucy', 'emma', 'olivia', 'susan', 'julie', 'mary', 'jane', 'tessa', 'sharon', 'heather', 'tracy', 'ashley', 'michelle', 'laura', 'anna', 'amy', 'joanna', 'jenny', 'catherine', 'angel', 'angela', 'susan', 'julie', 'mary', 'jane'
-    ];
-    for (const name of femaleNames) {
+    // 2. Try to find a voice with names specific to this chef personality
+    const personalityVoiceNames = chefVoiceNames[chefPersonality];
+    for (const name of personalityVoiceNames) {
       const voice = voices.find(v => v.name.toLowerCase().includes(name));
       if (voice) return voice;
     }
@@ -162,7 +177,7 @@ class VoiceService {
     
     this.currentUtterance = new SpeechSynthesisUtterance(recipeText);
     
-    const voice = this.getFemaleVoice();
+    const voice = this.getFemaleVoice(chefPersonality);
     if (voice) {
       this.currentUtterance.voice = voice;
     }
@@ -205,7 +220,7 @@ class VoiceService {
     
     this.currentUtterance = new SpeechSynthesisUtterance(normalizedInstructions);
     
-    const voice = this.getFemaleVoice();
+    const voice = this.getFemaleVoice(chefPersonality);
     if (voice) {
       this.currentUtterance.voice = voice;
     }
