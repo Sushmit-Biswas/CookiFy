@@ -6,20 +6,7 @@
 
 ![Line](https://user-images.githubusercontent.com/85225156/171937799-8fc9e255-9889-4642-9c92-6df85fb86e82.gif)
 
-</div>
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![React](https://img.shields.io/badge/React-19+-blue?logo=react&logoColor=white)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-  [![Vite](https://img.shields.io/badge/Vite-6+-purple?logo=vite&logoColor=white)](https://vitejs.dev/)
-
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-cyan?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-  [![Appwrite](https://img.shields.io/badge/Appwrite-Cloud-ff5722?logo=appwrite&logoColor=white)](https://appwrite.io/)
-  [![Google AI](https://img.shields.io/badge/Google_AI-Gemini-4285f4?logo=google&logoColor=white)](https://ai.google.dev/)
-  [![Voice API](https://img.shields.io/badge/Voice-Integration-success)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-</div>
-
-![Line](https://user-images.githubusercontent.com/85225156/171937799-8fc9e255-9889-4642-9c92-6df85fb86e82.gif)
 
 <p align="center">
    <b>Welcome to CookiFy!</b> Transform your everyday ingredients into extraordinary meals with our AI-powered recipe generation platform. Whether you're a novice cook or a culinary enthusiast, our intelligent system creates personalized recipes, provides step-by-step cooking guidance, and helps you reinvent your favorite dishes! Plus, enjoy voice-controlled features and smart cooking timers! 🤖👨‍🍳✨
@@ -35,6 +22,23 @@
   <a href="#-faqs">FAQs</a> •
   <a href="#-license">License</a>
 </p>
+
+---
+
+</div>
+
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![React](https://img.shields.io/badge/React-19+-blue?logo=react&logoColor=white)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Vite](https://img.shields.io/badge/Vite-6+-purple?logo=vite&logoColor=white)](https://vitejs.dev/)
+
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-cyan?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+  [![Appwrite](https://img.shields.io/badge/Appwrite-Cloud-ff5722?logo=appwrite&logoColor=white)](https://appwrite.io/)
+  [![Google AI](https://img.shields.io/badge/Google_AI-Gemini-4285f4?logo=google&logoColor=white)](https://ai.google.dev/)
+  [![Voice API](https://img.shields.io/badge/Voice-Integration-success)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+</div>
+
+![Line](https://user-images.githubusercontent.com/85225156/171937799-8fc9e255-9889-4642-9c92-6df85fb86e82.gif)
 
 ---
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.webp" width="25px" /> Overview
