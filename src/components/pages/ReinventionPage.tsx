@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { DIETARY_PREFERENCES, CHEF_PERSONALITIES, FLAVOR_PROFILES, RECIPE_STYLES } from '../../utils';
 import { DietaryPreference, ChefPersonality, FlavorProfile, RecipeStyle, type RecipeWithImage } from '../../types';
-import { reinventRecipe, generateRecipeImage } from '../../services/geminiService';
+import { reinventRecipe, generateRecipeImage, isDemoMode } from '../../services/geminiService';
 import Spinner from '../ui/Spinner';
 import RecipeCard from '../ui/RecipeCard';
 import CookingPath from './CookingPath';
 import VoiceControl from '../ui/VoiceControl';
+import DemoModeNotice from '../ui/DemoModeNotice';
 import { useNotification } from '../../contexts/NotificationContext';
 import { RefreshCw, Sparkles, Clock, Dish, Salad, Flame, Globe, X, User } from '../ui/Icons';
 
@@ -26,6 +27,7 @@ const ReinventionPage: React.FC<ReinventionPageProps> = ({ onSaveRecipe, isRecip
   const [error, setError] = useState<string | null>(null);
   const [selectedRecipes, setSelectedRecipes] = useState<RecipeWithImage[]>([]);
   const [showCookingPath, setShowCookingPath] = useState<boolean>(false);
+  const [showDemoNotice, setShowDemoNotice] = useState<boolean>(isDemoMode());
   const { showNotification } = useNotification();
 
   const toggleRecipeSelection = (recipe: RecipeWithImage) => {
@@ -109,6 +111,12 @@ const ReinventionPage: React.FC<ReinventionPageProps> = ({ onSaveRecipe, isRecip
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50">
+      {/* Demo Mode Notice */}
+      <DemoModeNotice 
+        show={showDemoNotice} 
+        onDismiss={() => setShowDemoNotice(false)} 
+      />
+      
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10"></div>

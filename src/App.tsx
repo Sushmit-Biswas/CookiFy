@@ -5,6 +5,7 @@ import HomePage from './components/pages/HomePage';
 import FavoritesPage from './components/pages/FavoritesPage';
 import ReinventionPage from './components/pages/ReinventionPage';
 import Header from './components/ui/Header';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { NotificationProvider, useNotification } from './contexts/NotificationContext';
 import appwriteService from './services/appwriteService';
@@ -103,11 +104,13 @@ const AppContent: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <AppContent />
-      </NotificationProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <NotificationProvider>
+          <AppContent />
+        </NotificationProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 };
 
